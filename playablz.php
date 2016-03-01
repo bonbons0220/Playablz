@@ -1,9 +1,8 @@
 <?php
 /*
-Plugin Name: Filterz 
+Plugin Name: Playablz 
 Plugin URI: http://zendgame.ocm
-Description: A Zendgame WordPress Plugin that allows user to
-display/hide elements with a checkbox menu.
+Description: A Zendgame WordPress Plugin with a Game in it.
 
 Version: 1.0
 Author: Bonnie Souter
@@ -31,7 +30,7 @@ License: GPLv2
  * Singleton class for setting up the plugin.
  *
  */
-final class Filterz_Plugin {
+final class Playablz_Plugin {
 
 	public $dir_path = '';
 	public $dir_uri = '';
@@ -49,7 +48,7 @@ final class Filterz_Plugin {
 		static $instance = null;
 
 		if ( is_null( $instance ) ) {
-			$instance = new Filterz_Plugin;
+			$instance = new Playablz_Plugin;
 			$instance->setup();
 			$instance->includes();
 			$instance->setup_actions();
@@ -62,17 +61,19 @@ final class Filterz_Plugin {
 	 * Constructor method.
 	 */
 	private function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this , 'register_filterz_script' ) );
+		add_action( 'wp_enqueue_scripts', array( $this , 'register_playablz_script' ) );
 
-		add_shortcode( 'FILTERZ' , array( $this , 'filterz' ) );
+		add_shortcode( 'PLAYABLZ' , array( $this , 'playablz' ) );
 	}
 	
-	function register_filterz_script() {
-		wp_register_script( 'filterz', $this->js_uri . "filterz.js", array( 'jquery' ), '1.0.0', true );
+	function register_playablz_script() {
+		wp_register_script( 'pz-script', $this->js_uri . "playablz.js", array( 'jquery' ), '1.0.0', true );
+		wp_register_style( 'pz-style', $this->css_uri . "playablz.css" );
 	}
 
-	public function filterz( $atts, $content = null, $tagname = null ) {
-		wp_enqueue_script( 'filterz' );
+	public function playablz( $atts, $content = null, $tagname = null ) {
+		wp_enqueue_script( 'pz-script' );
+		wp_enqueue_style( 'pz-style' );
 		return '';
 	}
 
@@ -80,28 +81,28 @@ final class Filterz_Plugin {
 	 * Magic method to output a string if trying to use the object as a string.
 	 */
 	public function __toString() {
-		return 'filterz';
+		return 'playablz';
 	}
 
 	/**
 	 * Magic method to keep the object from being cloned.
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Sorry, no can do.', 'filterz' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Sorry, no can do.', 'playablz' ), '1.0' );
 	}
 
 	/**
 	 * Magic method to keep the object from being unserialized.
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Sorry, no can do.', 'filterz' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Sorry, no can do.', 'playablz' ), '1.0' );
 	}
 
 	/**
 	 * Magic method to prevent a fatal error when calling a method that doesn't exist.
 	 */
 	public function __call( $method = '', $args = array() ) {
-		_doing_it_wrong( "Filterz_Plugin::{$method}", esc_html__( 'Method does not exist.', 'filterz' ), '1.0' );
+		_doing_it_wrong( "Playablz_Plugin::{$method}", esc_html__( 'Method does not exist.', 'playablz' ), '1.0' );
 		unset( $method, $args );
 		return null;
 	}
@@ -174,12 +175,12 @@ final class Filterz_Plugin {
 }
 
 /**
- * Gets the instance of the `Filterz_Plugin` class.  This function is useful for quickly grabbing data
+ * Gets the instance of the `Playablz_Plugin` class.  This function is useful for quickly grabbing data
  * used throughout the plugin.
  */
-function filterz_plugin() {
-	return Filterz_Plugin::get_instance();
+function playablz_plugin() {
+	return Playablz_Plugin::get_instance();
 }
 
 // Let's roll!
-filterz_plugin();
+playablz_plugin();
