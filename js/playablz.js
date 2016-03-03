@@ -19,8 +19,6 @@
 	
 		init: function( context ){
 			var mode=1; // all help, all debug, all messages
-			//var seed="123456789".split("");
-			var str = "<div class='pz-canvas'><div class='pz-board'>";
 			
 			//set onClick event for each tile
 			$(context+".playablz").on('change','textarea',{context:context},Playablz.update);
@@ -31,7 +29,7 @@
 			//populate the grid
 			Playablz.populate( context , [[1,2,3],[4,5,6],[7,8,9]]);
 			
-			//get the state
+			//save the state
 			Playablz[context] = {state: Playablz.getstate( context )};
 			
 			//check the state
@@ -50,7 +48,7 @@
 					while ( j++<9 ) {
 						r = ( Math.ceil( ( i ) / 3 ) - 1 ) * 3 + Math.ceil(j/3);
 						c = ( ( j - 1 ) % 3 ) + 1 + ( ( ( i - 1 ) % 3) * 3 );
-						str += "<textarea rows=2 cols=3 maxLength=6 "+ af;
+						str += "<textarea rows=3 cols=3 maxLength=9 "+ af;
 						str += " class='pz-tile' data-pz-tile='"+j+"' data-pz-row='"+r+"' data-pz-col='"+c+"'>";
 						str+= "</textarea>";
 						af="";
@@ -86,7 +84,7 @@
 		
 		update: function( event ){
 			var cleaned=[];
-			var val = $( this ).prop("value").replace(/[^1-6]/gim,"").split("").sort().forEach( function(e,i,a){ 
+			var val = $( this ).prop("value").replace(/[^1-9]/gim,"").split("").sort().forEach( function(e,i,a){ 
 				if ( cleaned.indexOf(e) === -1 ) {cleaned.push(e);} 
 			});
 			$( this ).prop("value" , cleaned.join("") );
