@@ -26,6 +26,8 @@ License: GPLv2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+if ( !defined( 'WP_ENV' ) ) define('WP_ENV', 'development');
+
 /**
  * Singleton class for setting up the plugin.
  *
@@ -67,7 +69,12 @@ final class Playablz_Plugin {
 	}
 	
 	function register_playablz_script() {
-		wp_register_script( 'pz-script', $this->js_uri . "playablz.js", array( 'jquery' ), '1.0.0', true );
+		if ( strcmp(WP_ENV,'development') === 0 ) {
+			wp_register_script( 'pz-script', $this->js_uri . "_playablz.js", array( 'jquery' ), '1.0.0', true );
+		} else {
+			wp_register_script( 'pz-script', $this->js_uri . "playablz.min.js", array( 'jquery' ), '1.0.0', true );
+		}
+		wp_register_script( 'math-js', "//cdnjs.cloudflare.com/ajax/libs/mathjs/2.7.0/math.min.js" );
 		wp_register_style( 'pz-style', $this->css_uri . "playablz.css" );
 	}
 

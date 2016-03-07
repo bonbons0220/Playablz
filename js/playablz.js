@@ -33,7 +33,7 @@
 			Playablz[context] = {state: Playablz.getstate( context )};
 			
 			//check the state
-			Playablz.check( context );
+			//Playablz.check( context );
 			
 		} ,
 		
@@ -90,9 +90,10 @@
 			$( this ).prop("value" , cleaned.join("") );
 			
 			Playablz[ event.data.context ].state[ $(this).data('pz-row') - 1 ][ $(this).data('pz-col') - 1 ] = $( this ).prop("value");
-		
+			
+			console.log( Playablz[ event.data.context ].state );
 			//check answers
-			Playablz.check( event.data.context );
+			//Playablz.check( event.data.context );
 			
 			
 		} ,
