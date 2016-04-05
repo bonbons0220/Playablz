@@ -4,7 +4,7 @@ Plugin Name: Playablz
 Plugin URI: http://zendgame.ocm
 Description: A Zendgame WordPress Plugin with a Game in it.
 
-Version: 1.0
+Version: 1.0.2
 Author: Bonnie Souter
 Author URI: http://zendgame.com
 License: GPLv2
