@@ -71,10 +71,11 @@ final class Playablz_Plugin {
 	function register_playablz_script() {
 		if ( strcmp(WP_ENV,'development') === 0 ) {
 			wp_register_script( 'pz-script', $this->js_uri . "_playablz.js", array( 'jquery' ), '1.0.0', true );
+			wp_register_script( 'math-js', $this->js_uri . "math.min.js" ); //
 		} else {
 			wp_register_script( 'pz-script', $this->js_uri . "playablz.min.js", array( 'jquery' ), '1.0.0', true );
+			wp_register_script( 'math-js', $this->js_uri . "math.js" );
 		}
-		wp_register_script( 'math-js', "//cdnjs.cloudflare.com/ajax/libs/mathjs/2.7.0/math.min.js" );
 		wp_register_style( 'pz-style', $this->css_uri . "playablz.css" );
 	}
 

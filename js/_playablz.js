@@ -1,4 +1,4 @@
-/*! playblz - v1.0.0 - by:1.0.0 - license: - 2016-03-04 */(function ($) {
+/*! playblz - v1.0.0 - by:1.0.0 - license: - 2016-04-04 */(function ($) {
 	
 	'use strict';
 

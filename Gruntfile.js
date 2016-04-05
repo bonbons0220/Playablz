@@ -22,6 +22,7 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'js/*.js',
         '!js/_*.js',
+		'!vendor/*.js', //not checking vendor files...
         '!**/*.min.*'
       ]
     },
